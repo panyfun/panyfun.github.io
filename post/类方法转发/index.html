@@ -45,7 +45,7 @@
     
     <title>
         
-            分类: 专业填坑 | 
+            类方法转发 | 
         
         Pany&#39;s Blog
     </title>
@@ -55,8 +55,8 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="iOS,Coding,Pany">
+    <meta name="description" itemprop="description" content="本文大约750字，将会介绍对类方法的消息转发，它能帮助我们解决类方法的unrecognized selector crash，或是应对一些其它需要转发的场景">
+    <meta name="keywords" content="iOS,Coding,Pany,iOS">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -83,6 +83,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tranquil-heart.min.css?ul3p9I9MsbOxK0L+BHzDDg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -219,7 +222,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Pany&#39;s Blog">
-    <meta name="msapplication-starturl" content="http://pany.fun/categories/专业填坑/">
+    <meta name="msapplication-starturl" content="http://pany.fun/post/类方法转发/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Pany&#39;s Blog">
@@ -234,13 +237,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://pany.fun/categories/专业填坑/">
+    <meta property="og:url" content="http://pany.fun/post/类方法转发/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="分类: 专业填坑 | Pany&#39;s Blog">
+    <meta property="og:title" content="类方法转发 | Pany&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="">
-    
+    <meta property="og:description" content="本文大约750字，将会介绍对类方法的消息转发，它能帮助我们解决类方法的unrecognized selector crash，或是应对一些其它需要转发的场景">
+    <meta property="og:article:tag" content="iOS"> 
 
+    
+        <meta property="article:published_time" content="Thu Oct 18 2018 16:03:43 GMT+0800">
+        <meta property="article:modified_time" content="Thu Oct 18 2018 16:30:28 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -248,13 +254,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://pany.fun/categories/专业填坑/index.html" />
+        <link rel="canonical" href="http://pany.fun/post/类方法转发/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://pany.fun/post/类方法转发/index.html",
+    "headline": "类方法转发",
+    "datePublished": "Thu Oct 18 2018 16:03:43 GMT+0800",
+    "dateModified": "Thu Oct 18 2018 16:30:28 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Pany",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "୧ʘ̆ںʘ̆୨"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Pany&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",iOSiOS,Coding,Pany",
+    "description": "本文大约750字，将会介绍对类方法的消息转发，它能帮助我们解决类方法的unrecognized selector crash，或是应对一些其它需要转发的场景",
+}
+</script>
 
 
     
@@ -288,171 +324,281 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#原创文章，转载请注明来源-pany-fun"><span class="post-toc-number">1.</span> <span class="post-toc-text">!!!原创文章，转载请注明来源: pany.fun</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题"><span class="post-toc-number"></span> <span class="post-toc-text"># 问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#真相"><span class="post-toc-number"></span> <span class="post-toc-text"># 真相</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源码"><span class="post-toc-number"></span> <span class="post-toc-text"># 源码</span></a>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Pure Thumbnail -->
-            <div class="post-thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:ture !important">
+            <div class="post_thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:ture !important">
         
     
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/post/类方法转发/">类方法转发</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            本文大约750字，将会介绍对类方法的消息转发，它能帮助我们解决类方法的unrecognized selector crash，或是应对一些其它需要转发的场景
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/post/类方法转发/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Pany's avatar">
-            </div>
-            <div>
-                <strong>Pany</strong>
-                <span>10月 18, 2018</span>
-            </div>
+            <p class="article-headline-p">
+                类方法转发
+            </p>
         </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/专业填坑/">专业填坑</a>
-              </span>
-            
 
-            
 
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::post/类方法转发/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
 
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
     </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Pany</strong>
+        <span>10月 18, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/iOS/">iOS</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=类方法转发&url=http://pany.fun/post/类方法转发/index.html&pic=http://pany.fun/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=类方法转发&url=http://pany.fun/post/类方法转发/index.html&via=Pany" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pany.fun/post/类方法转发/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://pany.fun/post/类方法转发/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
 </div>
 
-            
-            
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>本文大约750字，将会介绍对类方法的消息转发，它能帮助我们解决类方法的unrecognized selector crash，或是应对一些其它需要转发的场景</p>
+<a id="more"></a>
+<h5 id="原创文章，转载请注明来源-pany-fun"><a href="#原创文章，转载请注明来源-pany-fun" class="headerlink" title="!!!原创文章，转载请注明来源: pany.fun"></a><strong>!!!原创文章，转载请注明来源: <a href="http://pany.fun">pany.fun</a></strong></h5><p>如果你对消息转发流程还不熟悉，请先行了解 <a href="https://blog.ibireme.com/2013/11/26/objective-c-messaging/" target="_blank" rel="noopener">Objective-C 中的消息与消息转发</a></p>
+<p>熟悉以后我们知道，其实消息的转发可以非常简单，简单到可能几行代码就能搞定</p>
+<pre><code class="objective-c">- (id)forwardingTargetForSelector:(SEL)aSelector {
+    // TODO: forward
+    return target;
+}
+</code></pre>
+<p>这就是一个最简单的消息转发方案</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="# 问题"></a># 问题</h2><p>我司最近有一个需求需要用到消息转发，于是我们也是啪啪啪就敲上了上面的几行代码，分分钟搞定需求，一切都很顺利。</p>
+<p>但是我们在测试类方法的时候，问题出现了—— forward方法居然没有执行🤔</p>
+<p>按到理解，NSObject是root类，那么所有找不到的方法应该都能走到NSObject</p>
+<p>于是我们把上面的forward方法写在了NSObject的分类里进行测试 (正常开发不建议在分类中重写如此敏感的方法)</p>
+<p>分类中的方法会覆盖原类中的方法，也就是说，我们在分类中写的forward方法能够拿到所有的forward消息</p>
+<p>然后我们再次测试类方法，发现即使是分类里的forward方法，也没有被执行，但是测试实例方法确实是能够执行到的</p>
+<p>查询NSObject.h也没有发现任何能够简单转发类方法的接口</p>
+<h2 id="真相"><a href="#真相" class="headerlink" title="# 真相"></a># 真相</h2><p>真相当然只有一个，我们怀疑forward没生效是因为消息链路中有可疑人物已经处理了forward，最可疑的当然是NSObject</p>
+<p>考虑到我们测试实例方法可行而类方法不可行，我们将目标进一步定位在了NSObject的meta类上</p>
+<p>所以我们自然而然的想要给NSObject的原来添加forward方法，于是我们在NSObject的分类中硬塞了一个这样的方法</p>
+<pre><code class="objective-c">+ (id)forwardingTargetForSelector:(SEL)aSelector {
+    // TODO: forward
+    return target;
+}
+</code></pre>
+<p>需要注意，虽然它跟前面的forward方法名字完全相同，但是它是类方法，所以它会被添加到NSObject的meta类的方法列表中</p>
+<p>再次测试类方法，生效！</p>
+<p>真相只有一个：NSObject的meta类中包含方法forwardingTargetForSelector，即NSObject还有一个类方法版本的forward，但是它并没有开放在.h中</p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="# 源码"></a># 源码</h2><p>apple没有开放不用怕，毕竟runtime是开源的，我们查询了<a href="https://github.com/opensource-apple/objc4/blob/master/runtime/NSObject.mm#L2102" target="_blank" rel="noopener">NSObject的源码</a></p>
+<pre><code class="objective-c">// Line: 2102
+
++ (id)forwardingTargetForSelector:(SEL)sel {
+    return nil;
+}
+
+- (id)forwardingTargetForSelector:(SEL)sel {
+    return nil;
+}
+</code></pre>
+<p>真相大白</p>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            创作不易，转载请注明来源！pany.fun
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="http://pany.fun/post/类方法转发/">http://pany.fun/post/类方法转发/</a>
+                    </p>
+                </blockquote>
         
     
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
     
-        
-            <!-- Pure Thumbnail -->
-            <div class="post-thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:ture !important">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/post/Extension中属性合成的坑/">Extension中属性合成的坑</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            本文大约1200字，将会介绍访问扩展Extension中属性时遇到unrecognized selector的坑。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/post/Extension中属性合成的坑/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Pany's avatar">
-            </div>
-            <div>
-                <strong>Pany</strong>
-                <span>6月 15, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/专业填坑/">专业填坑</a>
-              </span>
-            
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::post/Extension中属性合成的坑/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
 </div>
 
-            
-            
-        
-    
 
-    
+                
 
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="post/类方法转发/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cytGBm0K6';
+var conf = 'prod_2ceb7c82759240d1fa6c78500e2ec1e8';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
 
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 0; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
     }
-</script>
+</style>
 
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
     
-</div>
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/post/基于策略模式设计的文件上传组件/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -753,6 +899,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
@@ -765,6 +915,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
