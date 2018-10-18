@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.2 -->
+    <script>
+        window.materialVersion = "1.5.2"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+    <link rel="dns-prefetch" href="https://changyan.sohu.com"/>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            发掘YYModel逻辑 | 
+        
+        Pany&#39;s Blog
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="本文大约3800字，将会在 Lision 的两篇关于YYModel解析的优秀文章的基础上，讲述一些 Lision 没有提到的逻辑细节。">
+    <meta name="keywords" content="iOS,Coding,Pany,iOS,YYModel">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tranquil-heart.min.css?ul3p9I9MsbOxK0L+BHzDDg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #288cc6;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #5eb0df !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #5eb0df !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #5eb0df !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #288cc6;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Pany&#39;s Blog">
+    <meta name="msapplication-starturl" content="http://pany.fun/post/发掘YYModel逻辑/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Pany&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://pany.fun/post/发掘YYModel逻辑/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="发掘YYModel逻辑 | Pany&#39;s Blog">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="本文大约3800字，将会在 Lision 的两篇关于YYModel解析的优秀文章的基础上，讲述一些 Lision 没有提到的逻辑细节。">
+    <meta property="og:article:tag" content="iOS"> <meta property="og:article:tag" content="YYModel"> 
+
+    
+        <meta property="article:published_time" content="Wed Apr 18 2018 15:45:33 GMT+0800">
+        <meta property="article:modified_time" content="Fri Sep 21 2018 09:55:16 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://pany.fun/post/发掘YYModel逻辑/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://pany.fun/post/发掘YYModel逻辑/index.html",
+    "headline": "发掘YYModel逻辑",
+    "datePublished": "Wed Apr 18 2018 15:45:33 GMT+0800",
+    "dateModified": "Fri Sep 21 2018 09:55:16 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Pany",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "୧ʘ̆ںʘ̆୨"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Pany&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",iOS,YYModeliOS,Coding,Pany",
+    "description": "本文大约3800字，将会在 Lision 的两篇关于YYModel解析的优秀文章的基础上，讲述一些 Lision 没有提到的逻辑细节。",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#原创文章，转载请注明来源-pany-fun"><span class="post-toc-number">1.</span> <span class="post-toc-text">!!!原创文章，转载请注明来源: pany.fun</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2个类"><span class="post-toc-number"></span> <span class="post-toc-text">#2个类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#YYModelMeta"><span class="post-toc-number"></span> <span class="post-toc-text">_YYModelMeta</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#gt-你可能会有的疑问"><span class="post-toc-number"></span> <span class="post-toc-text">&gt; 你可能会有的疑问</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#YYModelPropertyMeta"><span class="post-toc-number"></span> <span class="post-toc-text">_YYModelPropertyMeta</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#核心方法"><span class="post-toc-number"></span> <span class="post-toc-text">#核心方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BOOL-yy-modelSetWithDictionary-NSDictionary-dic"><span class="post-toc-number"></span> <span class="post-toc-text">- (BOOL)yy_modelSetWithDictionary:(NSDictionary *)dic</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#static-void-ModelSetWithDictionaryFunction-const-void-key-const-void-value-void-context"><span class="post-toc-number"></span> <span class="post-toc-text">static void ModelSetWithDictionaryFunction(const void key, const void value, void *context)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#static-void-ModelSetWithPropertyMetaArrayFunction-const-void-propertyMeta-void-context"><span class="post-toc-number"></span> <span class="post-toc-text">static void ModelSetWithPropertyMetaArrayFunction(const void _propertyMeta, void _context)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#static-void-ModelSetValueForProperty-id-model-id-value-YYModelPropertyMeta-meta"><span class="post-toc-number"></span> <span class="post-toc-text">static void ModelSetValueForProperty(id model,  id value,  YYModelPropertyMeta *meta)</span></a>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Pure Thumbnail -->
+            <div class="post_thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:ture !important">
+        
+    
+            <p class="article-headline-p">
+                发掘YYModel逻辑
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Pany</strong>
+        <span>4月 18, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/YYModel/">YYModel</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/iOS/">iOS</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=发掘YYModel逻辑&url=http://pany.fun/post/发掘YYModel逻辑/index.html&pic=http://pany.fun/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=发掘YYModel逻辑&url=http://pany.fun/post/发掘YYModel逻辑/index.html&via=Pany" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pany.fun/post/发掘YYModel逻辑/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://pany.fun/post/发掘YYModel逻辑/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>本文大约3800字，将会在 <a href="https://lision.me" target="_blank" rel="noopener">Lision</a> 的两篇关于YYModel解析的优秀文章的基础上，讲述一些 <a href="https://lision.me" target="_blank" rel="noopener">Lision</a> 没有提到的逻辑细节。</p>
+<a id="more"></a>
+<h5 id="原创文章，转载请注明来源-pany-fun"><a href="#原创文章，转载请注明来源-pany-fun" class="headerlink" title="!!!原创文章，转载请注明来源: pany.fun"></a><strong>!!!原创文章，转载请注明来源: <a href="http://pany.fun">pany.fun</a></strong></h5><p>首先两篇 <a href="https://lision.me" target="_blank" rel="noopener">Lision</a> 的文章如下，建议有兴趣的朋友先行阅读再回到本文。当然，如果没有用过YYModel，建议先行对 <a href="https://github.com/ibireme/YYModel" target="_blank" rel="noopener">YYModel的基本使用</a> 进行了解。</p>
+<ul>
+<li><p><a href="https://lision.me/yymodel_x01/" target="_blank" rel="noopener">揭秘YYModel魔法（上）</a></p>
+<blockquote>
+<p>主要涉及一些对YYModel的基本介绍，如框架结构、各个文件的介绍、简单代码细节的剖析 以及 YYModel用到的一些技术(主要是runtime)的基本原理 等</p>
+</blockquote>
+</li>
+<li><p><a href="https://lision.me/yymodel_x02/" target="_blank" rel="noopener">揭秘YYModel魔法（下）</a></p>
+<blockquote>
+<p>详细介绍YYModel的 model-&gt;json 以及 json-&gt;model的代码逻辑，但是也有一些因篇幅而不得不忽略的点。</p>
+</blockquote>
+</li>
+</ul>
+<p>本文讲述的就是自己在阅读上述两篇文章的过程中，对于作者迫于篇幅而舍弃或忽略的逻辑细节的理解(有一些细节真的很头大)，作者已经讲述的内容将不再赘述。</p>
+<p>为了方便表述，文中将用来给model赋值的json / dic 都描述为了json。但是其实它们是有一定区别的，例如dic可能是客户端生成的，其中的某些value已经是对象类型了，在转换过程中就不需要再进行隐式类型转换。</p>
+<h2 id="2个类"><a href="#2个类" class="headerlink" title="#2个类"></a>#2个类</h2><h3 id="YYModelMeta"><a href="#YYModelMeta" class="headerlink" title="_YYModelMeta"></a>_YYModelMeta</h3><blockquote>
+<p>NSObject+YYModel.m   -&gt;   line：454</p>
+<p>用于记录 类信息 以及 类的属性映射分类</p>
+</blockquote>
+<pre><code>// NSObject+YYModel.m -&gt; line：454
+// 为了方便理解，删除了部分无关内容
+
+// A class info in object model.
+@interface _YYModelMeta : NSObject {
+    @package
+    YYClassInfo *_classInfo;
+
+    NSDictionary *_mapper;        //&lt;NSString *, _YYModelPropertyMeta *&gt;
+
+    NSArray *_allPropertyMetas;        //&lt;_YYModelPropertyMeta *&gt;
+
+    NSArray *_keyPathPropertyMetas;        //&lt;_YYModelPropertyMeta *&gt;
+
+    NSArray *_multiKeysPropertyMetas;    //&lt;_YYModelPropertyMeta *&gt;
+
+    NSUInteger _keyMappedCount;
+}
+</code></pre><ul>
+<li><p>NSArray *_allPropertyMetas</p>
+<p>容器类型<code>&lt;_YYModelPropertyMeta *&gt;</code>，存放该类所有的属性的信息。</p>
+</li>
+<li><p>NSDictionary *_mapper</p>
+<p>容器类型<code>&lt;NSString *， _YYModelPropertyMeta *&gt;</code>，存放所有的映射关系，并且是以json中的key作为这个mapper的key，方便后面json-&gt;model取用。</p>
+<p> YYModel中映射关系我们大致可以分成几类，分类可以从两种角度(映射的层级数、映射关系的数量)考虑，每种角度下都可以将映射分为两类，我们直接列出来，但是注意 1or2 与 3or4 只是不同的分类角度，它们是可以叠加产生诸如 2&amp;3 的关系的。</p>
+<blockquote>
+<ol>
+<li><p>一级映射</p>
+<p>形如 (json)name -&gt; (model)name 或是 (json)name-&gt;(model)userName 通过一层关系就能取到值的映射（我们姑且称它为一级映射…），这里无关于model中的属性名与json中的key名是否相同，之和映射的层级数有关</p>
+</li>
+<li><p>多级映射</p>
+<p>形如 (json)user.name -&gt; (model)name 的映射就是多级映射，它需要在json中通过多层关系才能取到值</p>
+</li>
+<li><p>单关系映射</p>
+<p>model中的一个属性，在json中有且只有一个key与之相映射（我们姑且称这种为单关系映射…）</p>
+</li>
+<li><p>多关系映射</p>
+<p>model中的一个属性，在json中有多个key与之相映射，例如(json)Id/ID -&gt; (model)usrId。这种映射用于一个model在多处使用的时候，可能需要从不同的json转换而来。</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>NSArray *_keyPathPropertyMetas</p>
+<p>容器类型<code>&lt;_YYModelPropertyMeta *&gt;</code>，用于存放该类的多级映射属性( 形如 (json)user.name -&gt; (model)name )。</p>
+<p>源码中有这么一段能帮助我们理解这个数组容器存放的内容</p>
+<pre><code>// NSObject+YYModel.m -&gt; line: 551
+// 为了方便理解，删除了部分无关内容
+
+// 取用户自行定义的的映射关系字典做以下处理
+// 外部传入的参数
+// NSString *propertyName, NSString *mappedToKey;
+
+_YYModelPropertyMeta *propertyMeta = allPropertyMetas[propertyName];
+if ([mappedToKey isKindOfClass:[NSString class]]) {
+    if (mappedToKey.length == 0) return;
+
+    propertyMeta-&gt;_mappedToKey = mappedToKey;
+    NSArray *keyPath = [mappedToKey componentsSeparatedByString:@&quot;.&quot;];
+    for (NSString *onePath in keyPath) {
+      if (onePath.length == 0) {
+          NSMutableArray *tmp = keyPath.mutableCopy;
+          [tmp removeObject:@&quot;&quot;];
+          keyPath = tmp;
+          break;
+      }
+    }
+    if (keyPath.count &gt; 1) {    // 当keyPath是多级映射(count&gt;1)的时候加入到keyPathPropertyMetas中，否则直接加入mapper，并以json中的key作为mapper的key
+      propertyMeta-&gt;_mappedToKeyPath = keyPath;
+      [keyPathPropertyMetas addObject:propertyMeta];
+    }
+    propertyMeta-&gt;_next = mapper[mappedToKey] ?: nil;    // 暂时不用关注
+    mapper[mappedToKey] = propertyMeta;
+    ...
+}
+</code></pre></li>
+<li><p>NSArray *_multiKeysPropertyMetas</p>
+<p>容器类型<code>&lt;_YYModelPropertyMeta *&gt;</code>，用于存放该类的多关系映射属性( 形如 (json)Id/ID -&gt; (model)usrId )。</p>
+<p>源码中也有一段代码能够帮助我们理解这个数组容器存放的内容</p>
+<pre><code>// NSObject+YYModel.m -&gt; line: 576
+// 为了方便理解，删除了部分无关内容
+
+// 取用户自行定义的的映射关系字典做以下处理
+// 外部传入的参数
+// NSString *propertyName, NSString *mappedToKey;
+
+if ([mappedToKey isKindOfClass:[NSArray class]]) {
+
+    NSMutableArray *mappedToKeyArray = [NSMutableArray new];
+    // mappedToKeyArray中会存放两种格式的东西
+    // 如果映射是一级映射，则直接存放keyPath字符串
+    // 如果映射是多级映射，则存放keyPath拆分后数组
+
+    for (NSString *oneKey in ((NSArray *)mappedToKey)) {
+        if (![oneKey isKindOfClass:[NSString class]]) continue;
+        if (oneKey.length == 0) continue;
+
+        NSArray *keyPath = [oneKey componentsSeparatedByString:@&quot;.&quot;];
+        if (keyPath.count &gt; 1) {
+          [mappedToKeyArray addObject:keyPath];
+        } else {
+          [mappedToKeyArray addObject:oneKey];
+        }
+
+        if (!propertyMeta-&gt;_mappedToKey) {
+          propertyMeta-&gt;_mappedToKey = oneKey;
+          propertyMeta-&gt;_mappedToKeyPath = keyPath.count &gt; 1 ? keyPath : nil;
+        }
+    }
+    if (!propertyMeta-&gt;_mappedToKey) return;
+
+    propertyMeta-&gt;_mappedToKeyArray = mappedToKeyArray;
+    [multiKeysPropertyMetas addObject:propertyMeta];    // 经过校验后，如果该属性的mappedToKey有效，则加入到multiKeysPropertyMetas
+
+    propertyMeta-&gt;_next = mapper[mappedToKey] ?: nil;    // 暂时不用关注
+    mapper[mappedToKey] = propertyMeta;
+}
+</code></pre></li>
+<li><p>NSUInteger _keyMappedCount</p>
+<p>用于记录映射的总数量。YYModel的注释和 Lision 都描述为 “等同于 _mapper.count”。源码中发现，他们确实描述的非常精准，真的只是“等同”而已…因为它并不是直接取的mapper的count，而是取的allPropertyMetas的数量(虽然不明白其中道理)。</p>
+<pre><code>// NSObject+YYModel.m -&gt; line: 617
+_keyMappedCount = _allPropertyMetas.count;
+</code></pre></li>
+</ul>
+<h4 id="gt-你可能会有的疑问"><a href="#gt-你可能会有的疑问" class="headerlink" title="&gt; 你可能会有的疑问"></a>&gt; 你可能会有的疑问</h4><p>看完这么几个比较重要的属性以后，你或许注意到了这么两行代码</p>
+<pre><code>propertyMeta-&gt;_next = mapper[mappedToKey] ?: nil;
+mapper[mappedToKey] = propertyMeta;
+</code></pre><p>先看第二行，无论哪种映射条件下，propertyMeta都会被加入总映射表mapper。mapper是字典类型，key是json中的key，value是propertyMeta。</p>
+<p>“我们是不是考虑漏了一种情况？如果json中的一个key被多个属性映射了怎么办(比如 (json)name -&gt; (model)sthName， (json)name -&gt; (model)Id)？毕竟mapper是个直接放propertyMeta的字典，多次向字典内添加具有相同key的内容会覆盖的吧？🤔🤔🤔”</p>
+<p>这种情况当然也是有的，但是不要慌张，YYModel已经处理好保证不会覆盖啦😉，第一行代码就是YYModel对这种情况的处理：</p>
+<p>如果要映射的key在mapper中已经存在了(直接设置会覆盖)，YYModel会通过自己构造一个链表的方式，将相同映射key的属性链接起来，propertyMeta-&gt;_next指向另一个属性，这样就能够保证每个属性都不掉队啦。</p>
+<h3 id="YYModelPropertyMeta"><a href="#YYModelPropertyMeta" class="headerlink" title="_YYModelPropertyMeta"></a>_YYModelPropertyMeta</h3><blockquote>
+<p>NSObject+YYModel.m   -&gt;   line：320</p>
+<p>用于记录 属性的信息 以及 属性的映射关系 等</p>
+</blockquote>
+<p>这个类需要注意的点不多，简单了解一下几个东西就行</p>
+<pre><code>// NSObject+YYModel.m -&gt; line：320
+// 为了方便理解，删除了部分与讲解无关的内容
+
+@interface _YYModelPropertyMeta : NSObject {
+    @package
+
+    ...
+
+    Class _cls;    // 属性所属的类
+    Class _genericCls;    // 属性如果是容器(如NSArray)，容器内装的类型
+
+       NSString *_mappedToKey;
+    NSArray *_mappedToKeyPath;
+    NSArray *_mappedToKeyArray;
+
+    ...
+    _YYModelPropertyMeta *_next;
+}
+</code></pre><ul>
+<li><p>Class _genericCls</p>
+<p>需要和_cls区分一下，这个参数只有当属性是容器(如NSArray， NSDictionary)，则用这个参数记录容器内装的对象所属类，简单来说，就是容器的泛型类。</p>
+</li>
+<li><p>NSString *_mappedToKey</p>
+<p>如果属性与json是单关系的一级映射( 形如 (json)name-&gt;(model)userName )，则用此参数记录该属性映射到json中的key</p>
+</li>
+<li><p>NSArray *_mappedToKeyPath</p>
+<p>如果属性与json是单关系的多级映射( 形如 (json)user.name -&gt; (model)name )，则用此参数记录该属性映射到json中的path，以’.’分解后的有效数组</p>
+</li>
+<li><p>NSArray *_mappedToKeyArray</p>
+<p>如果属性与json是多关系映射，则记录到这个数组中，这个数组中既可以放一级映射的NSString，也可以放多级映射以’.’分解后的有效数组</p>
+</li>
+<li><p>YYModelPropertyMeta *next</p>
+<p>当有多个属性映射到同一个json中的key的时候，用这个next将它们以链表的形式连起来</p>
+<p>​</p>
+</li>
+</ul>
+<h2 id="核心方法"><a href="#核心方法" class="headerlink" title="#核心方法"></a>#核心方法</h2><h3 id="BOOL-yy-modelSetWithDictionary-NSDictionary-dic"><a href="#BOOL-yy-modelSetWithDictionary-NSDictionary-dic" class="headerlink" title="- (BOOL)yy_modelSetWithDictionary:(NSDictionary *)dic"></a>- (BOOL)yy_modelSetWithDictionary:(NSDictionary *)dic</h3><blockquote>
+<p>NSObject+YYModel.m   -&gt;   line：1478</p>
+<p>YYModel的核心方法之一，也是json/dic转model的主流程入口之一</p>
+</blockquote>
+<p>这个方法 Lision 的原文中也花了一些篇幅来讲，但是有些细节我们还是可以再拿出来说的更明白的。</p>
+<pre><code>// NSObject+YYModel.m -&gt; line: 1497
+// 为了方便理解，删除了部分与讲解无关的内容
+
+- (BOOL)yy_modelSetWithDictionary:(NSDictionary *)dic {
+
+    ...
+
+    ModelSetContext context = {0};
+    context.modelMeta = (__bridge void *)(modelMeta);
+    context.model = (__bridge void *)(self);
+    context.dictionary = (__bridge void *)(dic);
+
+    if (modelMeta-&gt;_keyMappedCount &gt;= CFDictionaryGetCount((CFDictionaryRef)dic)) {
+        // Operation 1
+        CFDictionaryApplyFunction((CFDictionaryRef)dic, ModelSetWithDictionaryFunction, &amp;context);
+
+        // Operation 2
+        if (modelMeta-&gt;_keyPathPropertyMetas) {
+            CFArrayApplyFunction((CFArrayRef)modelMeta-&gt;_keyPathPropertyMetas,
+                                 CFRangeMake(0, CFArrayGetCount((CFArrayRef)modelMeta-&gt;_keyPathPropertyMetas)),
+                                 ModelSetWithPropertyMetaArrayFunction,
+                                 &amp;context);
+        }
+
+        // Operation 3
+        if (modelMeta-&gt;_multiKeysPropertyMetas) {
+            CFArrayApplyFunction((CFArrayRef)modelMeta-&gt;_multiKeysPropertyMetas,
+                                 CFRangeMake(0, CFArrayGetCount((CFArrayRef)modelMeta-&gt;_multiKeysPropertyMetas)),
+                                 ModelSetWithPropertyMetaArrayFunction,
+                                 &amp;context);
+        }
+    } else {
+        CFArrayApplyFunction((CFArrayRef)modelMeta-&gt;_allPropertyMetas,
+                             CFRangeMake(0, modelMeta-&gt;_keyMappedCount),
+                             ModelSetWithPropertyMetaArrayFunction,
+                             &amp;context);
+    }
+}
+</code></pre><ul>
+<li><p>条件判断</p>
+<p>这个方法不长，占比较多的是一个条件判断。<code>modelMeta-&gt;_keyMappedCount &gt;= CFDictionaryGetCount((CFDictionaryRef)dic)</code>这是一个略微有点古怪的判断，但是其实作者的目很简单——通过判断找到数量比较少的容器开始遍历赋值，以Function执行的次数，加快模型转换速度。</p>
+<p>这个条件翻译一下是这样的</p>
+<p>当model中的属性，多于或等于dic中的键值对数量时，使用较少的一方，即dic，进行遍历并往model中赋值。大多数情况我们的model的属性数量会与dic中的键值对数量相同或略多。</p>
+<p>当model中的属性，少于dic中的键值对数量时，使用较少的一方，即model的属性表，进行遍历并往model中赋值。当json中有无用信息的时候，会出现这种情况。</p>
+</li>
+<li><p>Operation 1 :    对 dic 遍历执行 ModelSetWithDictionaryFunction 方法</p>
+<p>如果只看到这里，按正常理解，如果dic记录了所有的键值对，那么对它进行遍历应当就已经可以完成赋值工作啦，不需要再有多余的操作啦。但是我们却显然看到这一行代码后仍有其它操作。</p>
+<p>而事实上，确实Operation 1能够支撑大部分的业务场景，Lision原文也很准确的将它描述为 <code>一般情况下就是靠 ModelSetWithDictionaryFunction 通过字典设置模型</code>。既然都已经谈到了”一般”，自然我们会有不一般的情况，这些情况归类起来就是我们前面谈到的 <strong>‘多级映射’</strong> 以及 <strong>‘多关系映射’</strong></p>
+<p>因为dic是json转换来的字典，通过ModelSetWithDictionaryFunction的代码(后面会详谈) 我们也能够看到，它实际上就是一个dic遍历的回调函数，会取出key和value进行后续赋值操作，而dic的key显然一般不会直接存在”user.name”这种情况，所以<strong>对dic的遍历只能够完成一级单关系映射</strong>。</p>
+</li>
+<li><p>Operation 2 :   对 _keyPathPropertyMetas 遍历执行 ModelSetWithPropertyMetaArrayFunction 方法</p>
+<p>经过对Operation 1 以及对 _keyPathPropertyMetas 的讲解，这一步应该就已经好理解了，它的目的就是完成Operation 1 完成不了的操作之一——对 多级简单映射 进行处理并赋值。具体的ModelSetWithPropertyMetaArrayFunction我们后面再谈。</p>
+</li>
+<li><p>Operation 3:  对 _multiKeysPropertyMetas 遍历执行 ModelSetWithPropertyMetaArrayFunction 方法</p>
+<p>这一操作逻辑同 Operation 2 ，用于完成对 多关系映射 的处理并赋值。</p>
+</li>
+</ul>
+<h3 id="static-void-ModelSetWithDictionaryFunction-const-void-key-const-void-value-void-context"><a href="#static-void-ModelSetWithDictionaryFunction-const-void-key-const-void-value-void-context" class="headerlink" title="static void ModelSetWithDictionaryFunction(const void key, const void value, void *context)"></a>static void ModelSetWithDictionaryFunction(const void <em>key, const void </em>value, void *context)</h3><blockquote>
+<p>NSObject+YYModel.m  -&gt;  line：1115</p>
+<p>用于完成对 一级单关系映射 的转换处理，以及对映射到同一个key的属性的转换处理。</p>
+</blockquote>
+<pre><code>static void ModelSetWithDictionaryFunction(const void *_key, const void *_value, void *_context) {
+    ModelSetContext *context = _context;
+    __unsafe_unretained _YYModelMeta *meta = (__bridge _YYModelMeta *)(context-&gt;modelMeta);
+    __unsafe_unretained _YYModelPropertyMeta *propertyMeta = [meta-&gt;_mapper objectForKey:(__bridge id)(_key)];
+    __unsafe_unretained id model = (__bridge id)(context-&gt;model);
+    while (propertyMeta) {
+        if (propertyMeta-&gt;_setter) {
+            ModelSetValueForProperty(model, (__bridge __unsafe_unretained id)_value, propertyMeta);
+        }
+        propertyMeta = propertyMeta-&gt;_next;
+    };
+}
+</code></pre><p>这一段代码相对简单，其中的while循环主要是用来完成对 映射到同一个dic中的key的属性构成的链表进行遍历赋值。其中的赋值方法 ModelSetValueForProperty 会在后面讲述。</p>
+<h3 id="static-void-ModelSetWithPropertyMetaArrayFunction-const-void-propertyMeta-void-context"><a href="#static-void-ModelSetWithPropertyMetaArrayFunction-const-void-propertyMeta-void-context" class="headerlink" title="static void ModelSetWithPropertyMetaArrayFunction(const void _propertyMeta, void _context)"></a>static void ModelSetWithPropertyMetaArrayFunction(const void <em>_propertyMeta, void </em>_context)</h3><blockquote>
+<p>NSObject+YYModel.m  -&gt;  line：1115</p>
+<p>用于完成对 多级映射 以及 多关系映射 的转换处理。</p>
+</blockquote>
+<p>这个方法是 Lision 没有具体讲到的一个方法，貌似是被误看成了 ModelSetWithDictionaryFunction ，虽然功能上也差不多…</p>
+<pre><code>static void ModelSetWithPropertyMetaArrayFunction(const void *_propertyMeta, void *_context) {
+    ModelSetContext *context = _context;
+    __unsafe_unretained NSDictionary *dictionary = (__bridge NSDictionary *)(context-&gt;dictionary);
+    __unsafe_unretained _YYModelPropertyMeta *propertyMeta = (__bridge _YYModelPropertyMeta *)(_propertyMeta);
+    if (!propertyMeta-&gt;_setter) return;
+    id value = nil;
+
+    if (propertyMeta-&gt;_mappedToKeyArray) {
+        value = YYValueForMultiKeys(dictionary, propertyMeta-&gt;_mappedToKeyArray);
+    } else if (propertyMeta-&gt;_mappedToKeyPath) {
+        value = YYValueForKeyPath(dictionary, propertyMeta-&gt;_mappedToKeyPath);
+    } else {
+        value = [dictionary objectForKey:propertyMeta-&gt;_mappedToKey];
+    }
+
+    if (value) {
+        __unsafe_unretained id model = (__bridge id)(context-&gt;model);
+        ModelSetValueForProperty(model, value, propertyMeta);
+    }
+}
+</code></pre><p>这一段代码也是相对简单的，主要也就是中间部分的条件判断，但是有了前面对mappedToKeyArray和mappedToKeyPath的解释铺垫也就好理解了。</p>
+<p>YYValueForMultiKeys 和 YYValueForKeyPath 都是一个简单的对dic 循环or递归 取值的方法，相对简单不细讲啦，可以参看YYModel源码。</p>
+<h3 id="static-void-ModelSetValueForProperty-id-model-id-value-YYModelPropertyMeta-meta"><a href="#static-void-ModelSetValueForProperty-id-model-id-value-YYModelPropertyMeta-meta" class="headerlink" title="static void ModelSetValueForProperty(id model,  id value,  YYModelPropertyMeta *meta)"></a>static void ModelSetValueForProperty(id model,  id value,  YYModelPropertyMeta *meta)</h3><blockquote>
+<p>NSObject+YYModel.m  -&gt;  line：784</p>
+<p>用于完成 对属性赋值的工作，也包含一些附加工作，例如 自动类型转换、容器内类型处理</p>
+<p>为了让标题不太长，删除了部分信息，完成的方法名参考源码</p>
+</blockquote>
+<p>这个方法非常非常的长，784行 -&gt; 1099行，但是其中大多是一些类型判断以进行对应处理，建议大家还是多花些时间细细看看源码。</p>
+<p>这里需要提到的关于自动转换，YYModel还是存在一些不足的</p>
+<ul>
+<li><p>容器内的自动类型转换无法完成。从源码我们能看出，这一块是空白的，没有做相关的处理</p>
+<p>当我们的model的某个容器属性 如NSArray里放的是NSDate / NSNumber 时，无法自动类型转换。</p>
+<p>虽然我们额外处理一下也能完成需求，但是欠缺总是种遗憾。PS：不要问我为什么会有这种需求…</p>
+</li>
+<li><p>对于CGSize / CGRect 等基本的系统结构体，无法完成 标准字符串 到 结构体的自动类型转换</p>
+<p>这导致当我们的model中存在如CGSize / CGRect 等属性时，赋值有那么一些原始和乏味 (完成需求是没问题的) 。虽然这是因为runtime无法区分结构体的具体类型…<br>但是个人觉得，还是有办法支持的，例如由业务层返回类型。对于 无统一明确格式规则的字符串 转 CGSize / CGRect 可以不提供自动支持，但是标准格式的字符串还是可以提供支持的，毕竟 CGSize / CGRect 系统也提供了对应的字符串转换方法。</p>
+</li>
+<li><p>针对以上问题，后期计划fork一份YYModel，并自己尝试解决 🌝🌝</p>
+</li>
+</ul>
+<p>其它东西 Lision 的文章里都讲得很好啦~不再赘述</p>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            创作不易，转载请注明来源！pany.fun
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="http://pany.fun/post/发掘YYModel逻辑/">http://pany.fun/post/发掘YYModel逻辑/</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="post/发掘YYModel逻辑/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cytGBm0K6';
+var conf = 'prod_2ceb7c82759240d1fa6c78500e2ec1e8';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/post/isKindOf与isMemberOf的原理/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/post/PZPageListContainer使用手册/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Pany's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        panyfun@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:panyfun@gmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2018/10/">十月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/06/">六月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/专业填坑/">专业填坑<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/开源共勉/">开源共勉<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/日常学习/">日常学习<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/读书笔记/">读书笔记<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/panyfun" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2017&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Pany's Blog
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?d+XW6aNuIPgOn1iA7NnB4g==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 畅言公共 js 代码 start -->
+<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytGBm0K6">
+</script>
+<!-- 畅言公共 js 代码 end -->
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

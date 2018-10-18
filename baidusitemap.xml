@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://pany.fun/post/%E7%B1%BB%E6%96%B9%E6%B3%95Forward/</loc>
+    <lastmod>2018-10-18T08:30:28.487Z</lastmod>
+    <data>
+        <display>
+        <title>类方法转发</title>
+        <pubTime>2018-10-18T08:03:43.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="专业填坑" url="http://pany.fun/categories/%E4%B8%93%E4%B8%9A%E5%A1%AB%E5%9D%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://pany.fun/post/isKindOf%E4%B8%8EisMemberOf%E7%9A%84%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2018-10-18T07:59:46.410Z</lastmod>
+    <data>
+        <display>
+        <title>isKindOf与isMemberOf的原理</title>
+        <pubTime>2018-05-10T07:01:51.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="读书笔记" url="http://pany.fun/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://pany.fun/post/%E7%94%B1NSString*%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2018-09-21T01:55:16.897Z</lastmod>
+    <data>
+        <display>
+        <title>读书笔记：由NSString *引发的思考</title>
+        <pubTime>2018-03-24T07:09:54.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="读书笔记" url="http://pany.fun/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://pany.fun/post/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2018-09-21T01:55:16.897Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式——策略模式</title>
+        <pubTime>2018-06-25T03:27:30.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="日常学习" url="http://pany.fun/categories/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://pany.fun/post/layoutsubviews/</loc>
+    <lastmod>2018-09-21T01:55:16.896Z</lastmod>
+    <data>
+        <display>
+        <title>layoutSubviews触发时机解析</title>
+        <pubTime>2017-06-22T08:11:28.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="日常学习" url="http://pany.fun/categories/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://pany.fun/post/%E5%9F%BA%E4%BA%8E%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%BB%84%E4%BB%B6/</loc>
+    <lastmod>2018-09-21T01:55:16.896Z</lastmod>
+    <data>
+        <display>
+        <title>基于策略模式设计的文件上传组件</title>
+        <pubTime>2018-06-26T07:46:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="开源共勉" url="http://pany.fun/categories/%E5%BC%80%E6%BA%90%E5%85%B1%E5%8B%89/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://pany.fun/post/%E5%8F%91%E6%8E%98YYModel%E9%80%BB%E8%BE%91/</loc>
+    <lastmod>2018-09-21T01:55:16.896Z</lastmod>
+    <data>
+        <display>
+        <title>发掘YYModel逻辑</title>
+        <pubTime>2018-04-18T07:45:33.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>YYModel</tag>
+         
+         
+           
+             
+              <breadCrumb title="开源共勉" url="http://pany.fun/categories/%E5%BC%80%E6%BA%90%E5%85%B1%E5%8B%89/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://pany.fun/post/PZPageListContainer%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</loc>
+    <lastmod>2018-09-21T01:55:16.895Z</lastmod>
+    <data>
+        <display>
+        <title>PZPageListContainer使用手册</title>
+        <pubTime>2018-03-28T03:08:04.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>PZPageListContainer</tag>
+         
+         
+           
+             
+              <breadCrumb title="开源共勉" url="http://pany.fun/categories/%E5%BC%80%E6%BA%90%E5%85%B1%E5%8B%89/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://pany.fun/post/Extension%E4%B8%AD%E5%B1%9E%E6%80%A7%E5%90%88%E6%88%90%E7%9A%84%E5%9D%91/</loc>
+    <lastmod>2018-09-21T01:55:16.894Z</lastmod>
+    <data>
+        <display>
+        <title>Extension中属性合成的坑</title>
+        <pubTime>2018-06-15T03:51:21.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="专业填坑" url="http://pany.fun/categories/%E4%B8%93%E4%B8%9A%E5%A1%AB%E5%9D%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://pany.fun/post/PZPageListContainerView/</loc>
+    <lastmod>2018-09-21T01:55:16.894Z</lastmod>
+    <data>
+        <display>
+        <title>一个支持页面多方向划入的框架--PZPageListContainerView</title>
+        <pubTime>2018-03-20T02:59:38.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>PZPageListContainer</tag>
+         
+         
+           
+             
+              <breadCrumb title="开源共勉" url="http://pany.fun/categories/%E5%BC%80%E6%BA%90%E5%85%B1%E5%8B%89/"/>
+          
+        </display>
+    </data>
+    </url>
+
+</urlset>

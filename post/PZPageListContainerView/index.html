@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.2 -->
+    <script>
+        window.materialVersion = "1.5.2"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+    <link rel="dns-prefetch" href="https://changyan.sohu.com"/>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            一个支持页面多方向划入的框架--PZPageListContainerView | 
+        
+        Pany&#39;s Blog
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="本文大约5100字，需要的阅读时间比较长，属于教程类，慎入。建议实在空闲或有空且有需求的时候跟着做(虽然一般有需求都不会有空)。直接上手请移步使用说明书
+本文将会讲述一个能够支持上下左右划入(类似SnapChat)或纵向/水平滑动(类似头条)的PageList框架的搭建过程及其中遇到的一些问题。">
+    <meta name="keywords" content="iOS,Coding,Pany,iOS,PZPageListContainer">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tranquil-heart.min.css?ul3p9I9MsbOxK0L+BHzDDg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #288cc6;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #5eb0df !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #5eb0df !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #5eb0df !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #288cc6;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Pany&#39;s Blog">
+    <meta name="msapplication-starturl" content="http://pany.fun/post/PZPageListContainerView/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Pany&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://pany.fun/post/PZPageListContainerView/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="一个支持页面多方向划入的框架--PZPageListContainerView | Pany&#39;s Blog">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="本文大约5100字，需要的阅读时间比较长，属于教程类，慎入。建议实在空闲或有空且有需求的时候跟着做(虽然一般有需求都不会有空)。直接上手请移步使用说明书
+本文将会讲述一个能够支持上下左右划入(类似SnapChat)或纵向/水平滑动(类似头条)的PageList框架的搭建过程及其中遇到的一些问题。">
+    <meta property="og:article:tag" content="iOS"> <meta property="og:article:tag" content="PZPageListContainer"> 
+
+    
+        <meta property="article:published_time" content="Tue Mar 20 2018 10:59:38 GMT+0800">
+        <meta property="article:modified_time" content="Fri Sep 21 2018 09:55:16 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://pany.fun/post/PZPageListContainerView/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://pany.fun/post/PZPageListContainerView/index.html",
+    "headline": "一个支持页面多方向划入的框架--PZPageListContainerView",
+    "datePublished": "Tue Mar 20 2018 10:59:38 GMT+0800",
+    "dateModified": "Fri Sep 21 2018 09:55:16 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Pany",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "୧ʘ̆ںʘ̆୨"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Pany&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",iOS,PZPageListContaineriOS,Coding,Pany",
+    "description": "本文大约5100字，需要的阅读时间比较长，属于教程类，慎入。建议实在空闲或有空且有需求的时候跟着做(虽然一般有需求都不会有空)。直接上手请移步使用说明书
+本文将会讲述一个能够支持上下左右划入(类似SnapChat)或纵向/水平滑动(类似头条)的PageList框架的搭建过程及其中遇到的一些问题。",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#原创文章，转载请注明来源-pany-fun"><span class="post-toc-number">1.</span> <span class="post-toc-text">!!!原创文章，转载请注明来源: pany.fun</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number"></span> <span class="post-toc-text">#前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始搭建"><span class="post-toc-number"></span> <span class="post-toc-text">#开始搭建</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题一：两个collectionView相互覆盖，无法同时滑动"><span class="post-toc-number"></span> <span class="post-toc-text">#问题一：两个collectionView相互覆盖，无法同时滑动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题二：实现某些情况下的单个collectionView滑动"><span class="post-toc-number"></span> <span class="post-toc-text">#问题二：实现某些情况下的单个collectionView滑动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题三：让hit能够透过collectionView"><span class="post-toc-number"></span> <span class="post-toc-text">#问题三：让hit能够透过collectionView</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题四：中间类似相机视图-不需要跟随滚动的视图-的层级问题"><span class="post-toc-number"></span> <span class="post-toc-text">#问题四：中间类似相机视图(不需要跟随滚动的视图)的层级问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题五：tableView的侧滑删除与pageList的侧滑冲突问题"><span class="post-toc-number"></span> <span class="post-toc-text">#问题五：tableView的侧滑删除与pageList的侧滑冲突问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题六：为什么生命周期方法执行时间点不对"><span class="post-toc-number"></span> <span class="post-toc-text">#问题六：为什么生命周期方法执行时间点不对</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题七：PZPageListContainerView上touch事件意外cancel"><span class="post-toc-number"></span> <span class="post-toc-text">#问题七：PZPageListContainerView上touch事件意外cancel</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#End"><span class="post-toc-number"></span> <span class="post-toc-text">#End</span></a>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Pure Thumbnail -->
+            <div class="post_thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:ture !important">
+        
+    
+            <p class="article-headline-p">
+                一个支持页面多方向划入的框架--PZPageListContainerView
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Pany</strong>
+        <span>3月 20, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/PZPageListContainer/">PZPageListContainer</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/iOS/">iOS</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=一个支持页面多方向划入的框架--PZPageListContainerView&url=http://pany.fun/post/PZPageListContainerView/index.html&pic=http://pany.fun/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=一个支持页面多方向划入的框架--PZPageListContainerView&url=http://pany.fun/post/PZPageListContainerView/index.html&via=Pany" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pany.fun/post/PZPageListContainerView/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://pany.fun/post/PZPageListContainerView/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>本文大约5100字，需要的阅读时间比较长，属于教程类，慎入。建议实在空闲或有空且有需求的时候跟着做(虽然一般有需求都不会有空)。直接上手请移步<a href="https://panyfun.github.io/post/PZPageListContainer使用手册/" target="_blank" rel="noopener">使用说明书</a></p>
+<p>本文将会讲述一个能够支持上下左右划入(类似SnapChat)或纵向/水平滑动(类似头条)的PageList框架的搭建过程及其中遇到的一些问题。</p>
+<a id="more"></a>
+<h5 id="原创文章，转载请注明来源-pany-fun"><a href="#原创文章，转载请注明来源-pany-fun" class="headerlink" title="!!!原创文章，转载请注明来源: pany.fun"></a><strong>!!!原创文章，转载请注明来源: <a href="http://pany.fun">pany.fun</a></strong></h5><p><strong>本文的相关测试demo</strong>: <a href="https://github.com/panyfun/PZPageListContainerView" target="_blank" rel="noopener">PZPageListContainerViewDemo</a></p>
+<p>测试环境：Xcode9.2、iPhone7模拟器-iOS11.2、iPhone7-11.2.5</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="#前言"></a>#前言</h2><p>本文将讲述一个我自己写的containerView的搭建过程以及遇到的一些问题与处理，它来源于我司的一些业务思考。它既能够支持类似SnapChat的上下左右页面划入的功能(并做的更优秀)，同时也能够支持类似今日头条的横向PageList。实际上，横向、纵向、横+纵的PageList它都是没有问题的。</p>
+<p>因为只是想搭建一个易用的框架，所以整体设计不会向太多业务偏移，不会涉及特别细节的业务需求。</p>
+<p>这篇教程之后，我们最终将会实现的效果是这样的</p>
+<p><img src="http://p4jcee1r9.bkt.clouddn.com/18-3-28/27022081.jpg" alt="效果图"></p>
+<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="#开始搭建"></a>#开始搭建</h2><p>搭建过程我们将以SnapChat的首页为模板进行，更多PZPageListContainerView的用法将会写在文末。</p>
+<p>我们面临的一个问题当然是容器的选型，iOS中能滚动的还是有那么几个的，比如scrollView、tableView、collectionView 还有一个UIPageController(用过一次，感觉挺别扭…)。</p>
+<p>我们最开始是用scrollView实现的，一个足够满足明确需求且足够灵活的选型。但是它在我们写一套单独的生命周期之类的方法的时候(后面将会讲到原因)，在一些边界情况需要写很多的代码来判断，再加上一些其它的动画需求，代码量会更多，所以PZPageListContainerView最终所幸我就选择了collectionview。OK，<strong>容器选型-&gt;UICollectionView</strong>。</p>
+<p>既然我们需要像SnapChat一样支持上下左右的页面都能向中间划入显示，那么必然就需要两个collectionView的，一个collectionView用来承载左和右使用横向layout，另一个用来承载上和下使用纵向layout，两个collectionView都把第二个cell留空并设置clear color。</p>
+<p>那么类似SnapChat中间部分的相机页面放哪呢？观察发现，中间的页面是不会跟随着移动的，所以，这个中间页面一定不会放在我们的collectionView上。因为中间这个视图比较特殊，先不讲复杂，先用一个label代替啦，后面我们会有相关部分来解决。我们前面写collectionView的时候有各留一个cell的空白，就刚好能够把label露出来啦。完成后我们就会得到下面这样的视图结构，这一块代码比较简单，不详述啦，详见源码</p>
+<p><img src="http://p4jcee1r9.bkt.clouddn.com/18-3-22/75360384.jpg" alt="初步视图结构"></p>
+<p>完成初步视图结构的搭建后，我们会发现一个问题：两个collectionView相互覆盖，只有一个能够被滑动，另一个没法动…</p>
+<h2 id="问题一：两个collectionView相互覆盖，无法同时滑动"><a href="#问题一：两个collectionView相互覆盖，无法同时滑动" class="headerlink" title="#问题一：两个collectionView相互覆盖，无法同时滑动"></a>#问题一：两个collectionView相互覆盖，无法同时滑动</h2><p>究其原因，其实是两个collectionView因为都是全屏的，所以在层级上，一定有一个在上面一个在下面，因而导致了遮蔽，以至于在下面的没法被滑动。</p>
+<p>但是仔细想想，其实两个collectionView的滑动并没有真正的冲突，它们一个左右滑动，一个上下滑动，按道理应该是可以同时且<strong>同级</strong>存在的，这里需要强调一下同级，指的是在<strong>同一个view上是可以同时存在一个左右手势和一个上下手势的</strong>。</p>
+<p>接着我们找到collectionView的父视图scrollView，然后就会找到这么个属性👇👇</p>
+<pre><code>@property(nonatomic, readonly) UIPanGestureRecognizer *panGestureRecognizer
+</code></pre><p>它是readonly的，我们无法修改，但是我们可以拿出来使用</p>
+<p>最终我们通过这么两行代码解决了这个问题</p>
+<pre><code>[self addGestureRecognizer:_horizontalCollectionView.panGestureRecognizer];
+[self addGestureRecognizer:_verticalCollectionView.panGestureRecognizer];
+// self 指的PZPageListContainerView，此处它是collectionView的父视图
+</code></pre><p>然后两个collectionView就都能够顺利滑动啦🎉</p>
+<p>然而，又一个问题来啦，在乱滑一通后，会出现非空cell重叠的情况，就像下面这样</p>
+<p><img src="http://p4jcee1r9.bkt.clouddn.com/18-3-22/7074114.jpg" alt=""></p>
+<p>相机画面出现在最底层是没有问题的，有问题的是 绿色(代表上)和橙色(代表左) 的重叠，这个在SnapChat中是不可能重叠的。其实原因很简单，我们的collectionView的手势都被移到了同一层级，所以它们的滑动都是随时可以生效的，而SnapChat的横向list的滑动，只在纵向list处于第二个(即空白cell并露出相机)的时候才可以滑动，纵向list的滑动亦然。</p>
+<p>所以解决办法也很简单，在某些情况下，我们需要限制collectionvView的滑动</p>
+<h2 id="问题二：实现某些情况下的单个collectionView滑动"><a href="#问题二：实现某些情况下的单个collectionView滑动" class="headerlink" title="#问题二：实现某些情况下的单个collectionView滑动"></a>#问题二：实现某些情况下的单个collectionView滑动</h2><p>为了让功能更加灵活，我们首先提供了两个可供外部设置的参数，由业务来决定具体的滑动限制</p>
+<pre><code>// 如果只是单项列表，无需设置
+@property (nonatomic) NSInteger horizontalScrollableIndex;  /**&lt; default = 0, 当垂直list处在该index时，水平list可以滑动，NSIntegerMax表示不限制 */
+@property (nonatomic) NSInteger verticalScrollableIndex;    /**&lt; default = 0, 当水平list处在该index时，垂直list可以滑动，NSIntegerMax表示不限制 */
+</code></pre><p>简单的解释一下这两个参数</p>
+<p>horizontalScrollableIndex：用来表示horizontalList什么时候可以滑动，这个滑动时机用index表示，index指的是另一个方向即verticalList的indexPath中的item。</p>
+<p>当 verticalList的当前显示cell的indexPath的item == horizontalScrollableIndex 时 horizontalList 允许被滑动， 如果 horizontalScrollableIndex == NSIntegerMax 则不做滑动限制。</p>
+<p>verticalScrollableIndex 也是一样的道理。</p>
+<p>代码实现如下：</p>
+<pre><code>#pragma mark - Private
+- (void)resetCollectionViewScrollable {
+    NSInteger horizontalIndex = floor(_horizontalCollectionView.contentOffset.x / self.bounds.size.width);
+    NSInteger verticalIndex = floor(_verticalCollectionView.contentOffset.y / self.bounds.size.height);
+    _horizontalCollectionView.scrollEnabled = _horizontalScrollableIndex == NSIntegerMax || verticalIndex == _horizontalScrollableIndex;
+    _verticalCollectionView.scrollEnabled = _verticalScrollableIndex == NSIntegerMax || horizontalIndex == _verticalScrollableIndex;
+}
+</code></pre><p>因为在很多地方都会涉及到调用，所以我们这里设计成了私有方法。通过偏移量的向下取整来判断当前的index，然后通过index对比来判断是否允许滑动。</p>
+<p>需要调用的主要地方有下面这几个，其它的具体见源码(Edit: 后期因为需要满足其它功能，源码稍微做了些修改)</p>
+<blockquote>
+<p><code>- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;</code><br><code>- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView;</code></p>
+</blockquote>
+<p>搭配两个滑动限制参数，我们还设计了两个公开方法，用来通过代码把list滑动到对应的位置，其内部实现就是调用的collectionView的scrollToItemAtIndexPath，比较简单不过多阐述。两个滑动限制参数和两个公开的滑动方法需要搭配使用，否则使用不当会导致无法滑动。</p>
+<p>在这里，我们把两个滑动限制参数都设置为1(一共有3个cell，中间的index为1)，并且把横纵两个list都滑动到index为1的地方，然后一个类似SnapChat首页的基础结构就完成啦！🎉🎉</p>
+<blockquote>
+<p>这里再插两句，其实SnapChat只实现了左右两个页面的划入，并没有去做上下的，我也看了他们的视图结构，他们仅在横向上使用的scrollView，纵向上却是使用手势来控制的。虽然不清楚他们这么选择的原因，但是从我司自己实现的效果来看，整体还是很流畅的，感觉体验上尤其上下页面比SnapChat体验更好。</p>
+</blockquote>
+<h2 id="问题三：让hit能够透过collectionView"><a href="#问题三：让hit能够透过collectionView" class="headerlink" title="#问题三：让hit能够透过collectionView"></a>#问题三：让hit能够透过collectionView</h2><p>SnapChat位于中间的页面是一个相机页面，那么在我们前序步骤完成的结构上，如果我们尝试去和这个页面做一些交互，比如我们在label同级加上一个UISwitch，会发现它根本不能响应…</p>
+<p>原因也是非常简单的，因为被collectionView挡住了嘛，点击全被拦住了。所以解决方案当然是尝试然点击能够透过去，这个重写collectionView的hitTest就能做到啦，这也是前面的结构图中我们将collectionView自定义类型的原因。</p>
+<p>一方面因为点击能否透过涉及到一些具体逻辑需要在PZPageListContainerView(两个collectionView的父视图，也是这个框架的根视图)中判断，另一方面因为想将逻辑都统一在一起，所以我们在collectionView的hitTest中直接通过代理把事件转出去了，而整个设计中collectionView的代理正好是PZPageListContainerView。</p>
+<p>代理：</p>
+<pre><code>@protocol PZContainerContentCollectionViewDelegate&lt;UICollectionViewDelegate&gt;
+@optional
+- (UIView *)pzContainerCollectionView:(PZContainerContentCollectionView *)collectionView didHitWithInfo:(NSDictionary *)hitInfo;
+
+@end
+</code></pre><p>hitTest重写:</p>
+<pre><code>- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    // 拿到原本的应当响应这个事件的hitView
+    UIView *hitView = [super hitTest:point withEvent:event];
+    // 将相关数据传递给delegate
+    if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(pzContainerCollectionView:didHitWithInfo:)]) {
+        NSMutableDictionary *hitInfo = [NSMutableDictionary dictionary];
+        [hitInfo setValue:[NSValue valueWithCGPoint:point] forKey:@&quot;hitPoint&quot;];
+        [hitInfo setValue:hitView forKey:@&quot;hitView&quot;];
+        [hitInfo setValue:event forKey:@&quot;hitEvent&quot;];
+        // 由delegate来决定谁来响应这个hit
+        UIView *responseView = [self.delegate performSelector:@selector(pzContainerCollectionView:didHitWithInfo:) withObject:self withObject:hitInfo];
+
+        hitView = responseView;
+    }
+    return hitView;
+}
+</code></pre><p>接下来就是在PZPageListContainerView中进行判断，并处理这个代理啦</p>
+<pre><code>#pragma mark - &lt;PZContainerContentCollectionViewDelegate&gt;
+- (UIView *)pzContainerCollectionView:(PZContainerContentCollectionView *)collectionView didHitWithInfo:(NSDictionary *)hitInfo {
+    UIView *hitView = [hitInfo valueForKey:@&quot;hitView&quot;];
+    // 正常情况下，hitView应当是cell的contentView的subview
+    // 只有当页面存在空白区域的时候，才会点中cell.contentView
+    // 如果点中的是contentView(superview为cell)，返回nil不响应，其它情况均正常响应
+    UIView *responseView = [hitView.superview isKindOfClass:[UICollectionViewCell class]] ? nil : hitView;
+    return responseView;
+}
+</code></pre><p>当我们hit的是cell的contentView的时候，说明我们点的cell在这一块位置是空白的，如果cell在这一块位置有其它view，是一定hit不到contentView的，除非也无需求改写了其它view的hitTest，所以hit在这里是应该被允许透过去的。其它区域，hit正常响应。</p>
+<p>理论上，这样子hit就能够透过collectionView啦，但是实际尝试后，我们会发现，switch对于点击仍然是没有反应的。这是一个需要试错然后找到解决方案的问题，它可能是一个无奈之解，所以我们选择在文中提出而不是回避。</p>
+<p>此处将回到我们前面埋下的一个坑——类似SnapChat中间的相机视图，究竟该放在哪里。</p>
+<h2 id="问题四：中间类似相机视图-不需要跟随滚动的视图-的层级问题"><a href="#问题四：中间类似相机视图-不需要跟随滚动的视图-的层级问题" class="headerlink" title="#问题四：中间类似相机视图(不需要跟随滚动的视图)的层级问题"></a>#问题四：中间类似相机视图(不需要跟随滚动的视图)的层级问题</h2><p>我们改写collectionView以后switch仍然无法响应点击，原因是因为hit被我们collectionView的父视图——即PZPageListContainerView拿走啦。</p>
+<p>我们尝试着按老思路，改写PZPageListContainerView的hitTest来做判断，我们做了这样的判断</p>
+<pre><code>- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    UIView *hitView = [super hitTest:point withEvent:event];
+    return hitView == self ? nil : hitView;
+}
+</code></pre><p>它能够解决层级在PZPageListContainerView下的switch无法响应的问题，但也带来了另一个问题——PZPageListContainerView中的collectionView无法滑动了。这也算预期之内的问题，因为我们之前为了让collectionView能够同时滚动，把它们的panGesture都挪到了PZPageListContainerView上，而放我们在滑动的时候，hitView原本应当是PZPageListContainerView，但是却被hitTest错误返回nil不响应啦，此方案陷入了无解。</p>
+<p>简单捋顺：collectionView的滑动的panGesture必须在整个页面层级的最后，这里的整个不仅仅包含我们的PZPageListContainerView，还包含跟PZPageListContainerView同层级或有更低层级的其它视图。</p>
+<p>最终，我们选择了这样一个方案(后续有好的方案再提升)</p>
+<p>在PZPageListContainerView中，以懒加载的方式提供一个readOnly的backgroundView，用于方便外部放一些东西，比如我们想要的类似相机的视图。</p>
+<p>此时视图结构是这样的👇👇 蓝色选中的就是提供给外部的backgroundView</p>
+<p><img src="http://p4jcee1r9.bkt.clouddn.com/18-3-22/85966454.jpg" alt="新的视图结构"></p>
+<p>对于这样的设计还有一个好处，哪怕这个backgroundView上有局部的panGesture(比如有个小的collectionView)，也是不冲突的，因为它在我们的collectionView的panGesture之上，所以也能很好的工作。</p>
+<p>解决这个问题以后，一切看起来就更加顺畅啦，仿佛胜利在望。</p>
+<p>接下来我们尝试往四周的页面上加些复杂的东西，比如我们往左侧的页面(橙色)上加一个tableView，并且让tableView支持删除功能。然后问题又来啦…</p>
+<h2 id="问题五：tableView的侧滑删除与pageList的侧滑冲突问题"><a href="#问题五：tableView的侧滑删除与pageList的侧滑冲突问题" class="headerlink" title="#问题五：tableView的侧滑删除与pageList的侧滑冲突问题"></a>#问题五：tableView的侧滑删除与pageList的侧滑冲突问题</h2><p>在我们给左侧页面添加tableView且实现删除功能无误的情况下，滑动删除cell触发的(几乎)总是PZPageListContainerView内的collectionView的滑动。</p>
+<p>这个bug主要还是上下层手势冲突引起的，同时有两个手势可以响应。这里我们用到一个用来控制手势被识别后能否继续沿响应链传递的方法</p>
+<pre><code>- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer;
+</code></pre><blockquote>
+<p>这是UIGestureRecognizerDelegate中的方法，它用来控制是否允许多个手势共存，返回NO，则手势被识别后停止传递，返回YES则会继续沿响应链传递。默认返回NO</p>
+</blockquote>
+<p>我们对这个方法的使用是这样的，当手势冲突时，在这个方法中来禁掉一个手势(尽量保证同时只有一个手势响应，不然场面会有点失控🌝)。这个方法的调用是很早的，它在手势收到触碰事件的时候就能够有回调。</p>
+<p>具体代码如下</p>
+<pre><code>- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    if ([otherGestureRecognizer.view isKindOfClass:[UITableView class]] &amp;&amp;
+        gestureRecognizer.state != UIGestureRecognizerStatePossible) {
+        if ([otherGestureRecognizer.view isKindOfClass:[UITableView class]] ) { //tableview可能存在滑动删除问题
+            CGPoint touchPoint = [otherGestureRecognizer locationInView:otherGestureRecognizer.view];
+            UITableView *tableView = (UITableView *)otherGestureRecognizer.view;
+            __block BOOL touchCellCanEdit = NO;
+            [tableView.visibleCells enumerateObjectsUsingBlock:^(__kindof UITableViewCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (CGRectContainsPoint(obj.frame, touchPoint)) {
+                    NSIndexPath *indexPath = [tableView indexPathForCell:obj];
+                    if ([tableView.dataSource respondsToSelector:@selector(tableView:canEditRowAtIndexPath:)]) {
+                        touchCellCanEdit = [tableView.dataSource tableView:tableView canEditRowAtIndexPath:indexPath];
+                    }
+                    // 系统的tableView的滑动删除还有另一种实现方式，也需要根据情况判断一下
+                    if (!touchCellCanEdit &amp;&amp; [tableView.delegate respondsToSelector:@selector(tableView:editActionsForRowAtIndexPath:)]) {
+                        NSArray *actionArr = [tableView.delegate tableView:tableView editActionsForRowAtIndexPath:indexPath];
+                        touchCellCanEdit = actionArr.count &gt; 0;
+                    }
+                    *stop = YES;
+                }
+            }];
+            // 当点中cell且cell能删除的时候，禁用当前collectionView的滑动手势
+            gestureRecognizer.enabled = !touchCellCanEdit || otherGestureRecognizer.state == UIGestureRecognizerStateEnded || otherGestureRecognizer.state == UIGestureRecognizerStateCancelled;
+            // 当前滑动手势被禁用，则允许手势继续传递
+            return !gestureRecognizer.enabled;
+        }
+    }
+    return NO;
+}
+</code></pre><p>之所以要做一系列判断，是希望尽量缩小手势冲突的范围，因为cell的删除手势只有一个且在tableView上，所以我们想尽量只在cell支持删除的部分去响应删除，其它部分(如header、没有cell的空白部分)依旧响应collectionView的滑动。</p>
+<p>处理完tableView的手势以后，考虑到其它页面可能同样存在类似的问题，所以我们又提供了代理供业务自行处理。</p>
+<p>这个问题解决以后，cell就能够正常被删除啦，一切又回到了预期的模样。</p>
+<h2 id="问题六：为什么生命周期方法执行时间点不对"><a href="#问题六：为什么生命周期方法执行时间点不对" class="headerlink" title="#问题六：为什么生命周期方法执行时间点不对"></a>#问题六：为什么生命周期方法执行时间点不对</h2><p>完成上述步骤以后，如果我们尝试去在上下左右的controller中的系统的生命周期方法(例如：-viewWillAppear)中去做些什么，会发现这些方法都被很早就执行啦，几乎是PZPageListContainerView一加载出来就执行啦，哪怕我们还看不到这个view，然后还有一些会在使用过程中混乱调用。</p>
+<p>其实原因也很简单，因为内部会把这些controller的view加到collectionView的cell上，所以系统的生命周期都被打乱啦。</p>
+<p>解决办法应该也只有一个——重写一套生命周期方法。更详细的代码，封装在了PZPageListContainerViewController中，PZPageListContainerView也提供了一些能够帮助实现的代理。详见源码</p>
+<p>当然，除了生命周期以外，如果需要做的更加完善，我们还需要重屏幕旋转相关方法、状态栏相关方法。源码中这些都在controller中做了相关判断并调用正确的vc。</p>
+<h2 id="问题七：PZPageListContainerView上touch事件意外cancel"><a href="#问题七：PZPageListContainerView上touch事件意外cancel" class="headerlink" title="#问题七：PZPageListContainerView上touch事件意外cancel"></a>#问题七：PZPageListContainerView上touch事件意外cancel</h2><p>如果我们想在我们这个类似相机的页面(先叫centerVC)上面做一些更加复杂的事情，比如利用touch事件让一个小view跟着手指移动。</p>
+<p>我们在centerVC上加了这样的代码来做这个跟随手指移动的事情</p>
+<pre><code>- (void)touchesMoved:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self.view];
+    _touchView.center = location;
+}
+
+- (void)touchesEnded:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event {
+    NSLog(@&quot;touch end&quot;);
+}
+
+- (void)touchesCancelled:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event {
+    NSLog(@&quot;touch cancel&quot;);
+}
+</code></pre><p>首先我们会遇到collectionView的滑动同时被触发的问题，所以我们需要添加一个collectionView的禁用接口给外部根据业务需求来在需要的时候禁掉collectionView的滑动。</p>
+<p>然后再次滑动我们加的touchView，会发现稍微动一下以后，它就不动了，看log是touchCancel执行了，这看起来非常的诡异，让我们很是头大。</p>
+<p>我们一番搜索后找到了解答，博主自己提出了问题，后来自己研究解决啦：<a href="http://iphonedevsdk.com/forum/iphone-sdk-development/49840-touchescancelled-called-unexpectedly.html#post286709" target="_blank" rel="noopener">touchesCancelled called unexpectedly</a></p>
+<p>简单点说，scrollView有这么一个参数(没错，说白了又是collectionView引起的)</p>
+<pre><code>@property(nonatomic) BOOL canCancelContentTouches;    
+// default is YES. if NO, then once we start tracking, we don&#39;t try to drag if the touch moves. this has no effect on presses
+</code></pre><p>注释写到，当返回NO的时候，scrollView就不会跟随手指移动啦。而其实正是我们当前需求所需要的。</p>
+<p>我们在实践中发现这个参数能解决问题，但是不是特别好用，它太过武断而一刀切，所以我们继续摸索，找到了这么个更好用的方法</p>
+<pre><code>- (BOOL)touchesShouldCancelInContentView:(UIView *)view;
+// called before scrolling begins if touches have already been delivered to a subview of the scroll view. 
+// if it returns NO the touches will continue to be delivered to the subview and scrolling will not occur
+// default returns YES if view isn&#39;t a UIControl
+// not called if canCancelContentTouches is NO
+</code></pre><blockquote>
+<p>这个回调方法的主要作用是能够改变touches的分发，默认是YES表示需要继续分发touches。当返回NO时，就会被打断。需要注意的是，<strong>它不是打断scrollView的touches事件，而是打断传进来的view的touches事件</strong>。</p>
+</blockquote>
+<p>原本这个回调是影响scrollView上的subView的，但是这里我们把collectionView的panGesture直接移到了PZPageListContainerView上，而我们的centerVC所在的backgroundView是PZPageListContainerView的subView，这就导致collectionView和centerVC的view形成了一个假的父子关系。</p>
+<p>搞清楚了原理以后，我们在collectionView中添加以下代码，就能解决问题啦</p>
+<pre><code>- (BOOL)touchesShouldCancelInContentView:(UIView *)view {
+    return self.scrollEnabled &amp;&amp; self.panGestureRecognizer.enabled;
+}
+// 当collectionView可以滑动时，打断subView的touches，否则不打断。
+</code></pre><h2 id="End"><a href="#End" class="headerlink" title="#End"></a>#End</h2><p>至此，整个框架也就基本结束啦。过程中遇到了很多很多问题都是因为scrollView的叠加导致的，其中的一些比较麻烦的问题，也基本都帮大家扫了雷，希望其中的某些东西能够为大家解决问题提供思路。本文中涉及到的一些技术点，后期有空也会从这个demo的搭建过程中分离出来单独出文。更多细节，请参考<a href="https://github.com/panyfun/PZPageListContainerView" target="_blank" rel="noopener">源码</a>。</p>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            创作不易，转载请注明来源！pany.fun
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="http://pany.fun/post/PZPageListContainerView/">http://pany.fun/post/PZPageListContainerView/</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="post/PZPageListContainerView/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cytGBm0K6';
+var conf = 'prod_2ceb7c82759240d1fa6c78500e2ec1e8';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/post/由NSString*引发的思考/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/post/layoutsubviews/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Pany's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        panyfun@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:panyfun@gmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2018/10/">十月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/06/">六月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/专业填坑/">专业填坑<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/开源共勉/">开源共勉<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/日常学习/">日常学习<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/读书笔记/">读书笔记<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/panyfun" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2017&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Pany's Blog
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?d+XW6aNuIPgOn1iA7NnB4g==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 畅言公共 js 代码 start -->
+<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytGBm0K6">
+</script>
+<!-- 畅言公共 js 代码 end -->
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
