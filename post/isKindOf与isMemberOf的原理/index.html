@@ -246,7 +246,7 @@
 
     
         <meta property="article:published_time" content="Thu May 10 2018 15:01:51 GMT+0800">
-        <meta property="article:modified_time" content="Thu Oct 18 2018 15:59:46 GMT+0800">
+        <meta property="article:modified_time" content="Wed Dec 12 2018 20:31:06 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -269,7 +269,7 @@
     "mainEntityOfPage": "http://pany.fun/post/isKindOf与isMemberOf的原理/index.html",
     "headline": "isKindOf与isMemberOf的原理",
     "datePublished": "Thu May 10 2018 15:01:51 GMT+0800",
-    "dateModified": "Thu Oct 18 2018 15:59:46 GMT+0800",
+    "dateModified": "Wed Dec 12 2018 20:31:06 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Pany",
@@ -524,7 +524,7 @@
 <p>为什么 isKindOfClass 能够进行是否属于子类实例的判断？而isMemberOfClass不能？它们做了什么不一样的事情？</p>
 <p>当然，两个不同方法是开发工作的需要，但是这不是我们所想给出的答案，我们更多想知道的是它们是如何去判断的，在判断上又有什么不同。</p>
 <h2 id="答案"><a href="#答案" class="headerlink" title="# 答案"></a># 答案</h2><p>为了理解它们的原理，我们需要先引入一张熟悉的图，如果这张图你不熟悉，请<a href="http://www.sealiesoftware.com/blog/archive/2009/04/14/objc_explain_Classes_and_metaclasses.html" target="_blank" rel="noopener">点击这里</a> 或者google</p>
-<p><img src="http://p4jcee1r9.bkt.clouddn.com/18-5-10/10683033.jpg" alt="对象，类与元类之间的关系"></p>
+<p><img src="http://img.pany.fun/18-5-10/10683033.jpg" alt="对象，类与元类之间的关系"></p>
 <blockquote>
 <p>图中Root Class(class)可以理解为NSObject，Root Class(meta)可以理解为NSObject meta</p>
 <p><a href="https://developer.apple.com/documentation/objectivec/nsobject" target="_blank" rel="noopener">更精准的描述</a>  NSObject: The root class of <strong>most</strong> Objective-C class hierarchies</p>
